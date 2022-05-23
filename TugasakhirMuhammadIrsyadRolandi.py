@@ -2,11 +2,18 @@
 # Modul 1 : Variabel
 # Modul 2 : if-else
 # Modul 4 : Function
+# Modul 7 : Stack
 # Modul 8 : GUI
+
 
 from tkinter import *
 from tkinter import messagebox
+from tkinter.ttk import Progressbar
+from tkinter.messagebox import *
+from turtle import window_width
 
+Nilai = []
+window = Tk()
 root = Tk()
 root.title("Aplikasi Penghitung Nilai Akhir")
 #Membuat Tampilan
@@ -49,13 +56,13 @@ def mulai(): #fungsi tombol
         messagebox.showinfo("Nilai Konversi","Nilai Anda adalah B (PERTAHANKAN DAN TINGKATKAN)")
     elif(has < 75 and has < 80):
         n_hasil.insert(0,str(has))
-        messagebox.showinfo("Nilai Konversi","Nilai Anda adalah C (TINGKATKAN)")
+        messagebox.showinfo("Nilai Konversi","Nilai Anda adalah C (TINGKATKAN TERUS)")
     elif(has < 70 and has < 75):
         n_hasil.insert(0,str(has))
-        messagebox.showinfo("Nilai Konversi","Nilai Anda adalah D (TINGKATKAN)")
+        messagebox.showinfo("Nilai Konversi","Nilai Anda adalah D (TINGKATKAN LAGI)")
     else :
         n_hasil.insert(0,str(has))
-        messagebox.showinfo("Nilai Konversi","Nilai Anda adalah E (TINGKATKAN)")
+        messagebox.showinfo("Nilai Konversi","Nilai Anda adalah E (TINGKATKAN YA)")
 
 #membuat tampilan hasil
 hasil = Label(root,text="Nilai Anda Adalah : ")
@@ -63,7 +70,40 @@ n_hasil = Entry(root,width=10,borderwidth=5)
 hasil.grid(column=0, row = 6)
 n_hasil.grid(column=1,row=6)
 
-olah = Button(root,text="klik",bg="green",command=mulai)
+olah = Button(root,text="klik",bg="blue",command=mulai)
 olah.grid(columnspan=2,rowspan=2)
 
+#Membuat Stack
+def stackPush():
+    data = userInput.get()
+    Nilai.append(data)
+    userInput.set("")
+def stackPop():
+    Nilai.pop()
+
+
+labelnama = Label(window,text = "Masukkan Nilai Rata Rata yang sudah dihitung : \n").pack(side=TOP)
+userInput = StringVar()
+entry = Entry(window,textvariable=userInput).pack(side=TOP)
+
+def tampilData():
+    global showNama
+    showNama.configure(state="normal")
+    showNama.delete(1.0,"end")
+    showNama.insert("end", "Nilai Rata Rata  : \n")
+    showNama.insert("end", '\n'.join(Nilai))
+    showNama.configure(state="disabled")
+
+#buttons
+buttonSubmit = Button(window, text="Submit", command=lambda: [stackPush(), tampilData()]).pack(pady=5)
+buttonPop = Button(window, text= "Pop Data", command=lambda: [stackPop(), tampilData()]).pack(pady=5)
+
+#tampil Nilai Rata Rata
+showNama = Text(window, width=30, height= 10)
+showNama.insert("end", "Nilai Rata Rata  : ")
+showNama.insert("end", '\n'.join(Nilai))
+showNama.configure(state="disabled")
+showNama.pack(pady=5)
+
+window.mainloop()
 root.mainloop()
