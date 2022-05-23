@@ -22,8 +22,8 @@ n_tugas = Entry(root, width=10, borderwidth= 5)
 n_uts = Entry(root, width=10, borderwidth= 5)
 n_uas = Entry(root, width=10, borderwidth= 5)
 #membuat label
-judul = Label(root,text="Silahkan isi data-data berikut ! ",bg="blue")
-isi = Label(root,text="Isian",bg="green")
+judul = Label(root,text="Silahkan isi data-data berikut ! ",bg="light blue")
+isi = Label(root,text="Isian",bg="pink")
 hadir = Label(root,text="Nilai Kehadiran : ")
 tugas = Label(root,text="Nilai Tugas : ")
 uts = Label(root,text="Nilai UTS : ")
@@ -70,7 +70,7 @@ n_hasil = Entry(root,width=10,borderwidth=5)
 hasil.grid(column=0, row = 6)
 n_hasil.grid(column=1,row=6)
 
-olah = Button(root,text="klik",bg="blue",command=mulai)
+olah = Button(root,text="klik",bg="light blue",command=mulai)
 olah.grid(columnspan=2,rowspan=2)
 
 #Membuat Stack
@@ -95,8 +95,8 @@ def tampilData():
     showNama.configure(state="disabled")
 
 #buttons
-buttonSubmit = Button(window, text="Submit", command=lambda: [stackPush(), tampilData()]).pack(pady=5)
-buttonPop = Button(window, text= "Pop Data", command=lambda: [stackPop(), tampilData()]).pack(pady=5)
+buttonSubmit = Button(window, text="Submit",bg="light green", command=lambda: [stackPush(), tampilData()]).pack(pady=5)
+buttonPop = Button(window, text= "Pop Data",bg="light blue", command=lambda: [stackPop(), tampilData()]).pack(pady=5)
 
 #tampil Nilai Rata Rata
 showNama = Text(window, width=30, height= 10)
