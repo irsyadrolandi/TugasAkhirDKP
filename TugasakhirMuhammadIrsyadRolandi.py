@@ -130,7 +130,7 @@ def randomFunction():
 
 buttonGenerate = Button(window, text="Cari Pemenang",bg="light blue", command=lambda: [randomFunction(), tampilData()]).pack()
 showWinner = Text(window, width=20, height= 3)
-showWinner.insert("end", "YANG MENDAPAT BONUS ADALAH : \n")
+showWinner.insert("end", "YANG MENDAPAT BONUS LIMA POIN ADALAH : \n")
 showWinner.configure(state="disabled")
 showWinner.pack(pady=5)
 
